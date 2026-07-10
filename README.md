@@ -1,72 +1,27 @@
 # cloud-itonami-iso3166-usa
 
-Open ISO 3166 Blueprint for **USA**: the United States.
+Open ISO 3166 Blueprint for **USA**: the United States — **`:implemented`**.
 
-This repository designs a forkable OSS business for an independent
-public-sector market-entry consultant: an already-incorporated operator
-(e.g. a `cloud-itonami-cofog-{code}`, `cloud-itonami-isco-{code}`,
-`cloud-itonami-unspsc-{segment}` or `cloud-itonami-{ISIC}` blueprint
-fork) gets a Compliance Advisor + independent **Market-Entry Compliance
-Governor** to navigate public-procurement registration, local business/
-tax registration, and local-content rules in the United States, so the operator
-can win and service a government contract without hiring a full in-house
-compliance department.
+Independent public-sector market-entry & procurement-compliance service
+for an already-incorporated operator entering U.S. public contracts
+(SAM.gov / FAR / EIN / Buy American / SBA set-asides).
 
-## No robotics premise — digital/data service exemption
+## Implementation (R0)
 
-Market-entry and procurement-compliance navigation is a pure data/software
-service with no physical-domain work (portal registration, document
-checklists, regulatory-change monitoring) — the same exemption class as
-`cloud-itonami-6310` (HR SaaS replacement) and `cloud-itonami-gtin-*`.
-`blueprint.edn` sets `:itonami.blueprint/robotics false` and
-`:required-technologies` lists only real capabilities (`:identity`,
-`:forms`, `:dmn`, `:bpmn`, `:audit-ledger`), no `:robotics`.
+| Piece | Location |
+|---|---|
+| Actor | `src/marketentry/*` |
+| Governor | `:market-entry-compliance-governor` |
+| Flagship HARD | `sam-uei-unverified` (SAM Unique Entity ID) |
+| Tests | `clojure -M:dev:test` |
+| Demo | `clojure -M:dev:run` |
 
-## Core Contract
-
-```text
-operator intake + prior filing history
-        |
-        v
-Compliance Advisor -> Market-Entry Compliance Governor -> filing draft, or human sign-off
-        |
-        v
-gated portal registration / filing submission + audit ledger
-```
-
-No automated proposal can submit a portal registration or filing the
-governor refuses, suppress a compliance record, or claim a legal/tax
-conclusion the governor has not cleared. `:filing/submit` is never in any
-phase's `:auto` set — it always requires human sign-off (mirrors
-`cloud-itonami-M6910`'s `filing-submit-never-auto-at-any-phase`
-invariant).
+`:filing/submit` is never auto-committed at any phase.
 
 ## What this is NOT
 
-- **Not the government of the United States.** See
-  [`docs/business-model.md`](docs/business-model.md) for the boundary with
-  `com-etzhayyim-ooyake` (read-only civic mirror), `matsurigoto` (sovereign
-  statecraft), `com-etzhayyim-toritsugi` (individual citizen concierge),
-  `legal-entity.etzhayyim.com` (read-only data aggregation), and
-  `cloud-itonami-M6910` (company incorporation — a different regulatory
-  phase this blueprint assumes is already complete).
-- **Not legal or tax advice.** Every regulatory claim must cite the
-  official source and route final filings to U.S.-licensed counsel
-  or a registered agent where the law requires licensed representation.
-
-## Capability layer
-
-Resolves via [`kotoba-lang/iso3166`](https://github.com/kotoba-lang/iso3166)
-(ISO 3166 `USA`). Required capabilities:
-
-- :identity
-- :forms
-- :dmn
-- :bpmn
-- :audit-ledger
-
-See [`docs/business-model.md`](docs/business-model.md) and
-[`docs/operator-guide.md`](docs/operator-guide.md).
+- **Not the government of the United States.** Commercial market-entry
+  compliance for operators who bid into government, never the government.
 
 ## License
 
