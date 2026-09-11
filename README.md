@@ -13,8 +13,8 @@ for an already-incorporated operator entering U.S. public contracts
 | Actor | `src/marketentry/*` |
 | Governor | `:market-entry-compliance-governor` |
 | Flagship HARD | `sam-uei-unverified` (SAM Unique Entity ID) |
-| Tests | `clojure -M:dev:test` |
-| Demo | `clojure -M:dev:run` |
+| Tests | `kbb -M:dev:test` |
+| Demo | `kbb -M:dev:run` |
 
 `:filing/submit` is never auto-committed at any phase.
 
